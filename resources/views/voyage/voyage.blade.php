@@ -21,24 +21,26 @@
                             <th>lieu de départ</th>
                             <th>lieu d'arrivée</th>
                             <th>Client</th>
-                            <th class="text-right">Chauffeur</th>
+                            <th class="text-left">Chauffeur</th>
                             <th class="text-right">Actions</th>
                         </tr>
                     </thead>
                     <tbody>
+                        @foreach ($voyages as $voyage)
                         <tr>
-                            <td class="text-center">3</td>
-                            <td>Av massira khadra</td>
-                            <td>av zrak touni</td>
-                            <td>soufian chabou</td>
-                            <td class="text-right">mohamed</td>
+                            <td class="text-center">{{$voyage->id}}</td>
+                            <td>{{$voyage->depart}}</td>
+                            <td>{{$voyage->arivee}}</td>
+                            <td>{{$voyage->nomclient}} {{$voyage->prenomclient}}</td>
+                            <td class="text-left">{{$voyage->nomchauffeur}} {{$voyage->prenomchauffeur}}</td>
                             <td class="td-actions text-right">
-                                <button type="button" rel="tooltip" class="btn btn-info btn-simple">
+                                <a href="{{url('/voyage/'.$voyage->id)}}" type="button" rel="tooltip" class="btn btn-info btn-simple">
                                     <i class="material-icons">visibility</i>
-                                </button>
+                                </a>
 
                             </td>
                         </tr>
+                        @endforeach
                     </tbody>
                 </table>
 

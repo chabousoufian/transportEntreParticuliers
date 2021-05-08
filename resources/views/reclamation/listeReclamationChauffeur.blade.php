@@ -1,6 +1,6 @@
 @extends('layouts.admin_layout')
 
-@section('title' , 'Espace Reclamation')
+@section('title' , 'Liste Reclamation Client')
 
 @section('content')
 
@@ -8,7 +8,7 @@
     <div class="container-fluid">
         <!-- your content here -->
         <div class="">
-        <h1>Liste Des Reclamation</h1>
+        <h1>Liste Des Reclamation du chauffeur</h1>
         <form class="d-flex">
             <a class="btn btn-outline-success" type="button" href="{{url('/reclamation/all')}}">Historique</a>
           </form>

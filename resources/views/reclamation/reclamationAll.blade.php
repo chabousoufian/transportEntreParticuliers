@@ -1,18 +1,15 @@
 @extends('layouts.admin_layout')
 
-@section('title' , 'Espace Reclamation')
+@section('title' , 'Historique de Reclamation')
 
 @section('content')
 
 
     <div class="container-fluid">
         <!-- your content here -->
-        <div class="">
-        <h1>Liste Des Reclamation</h1>
-        <form class="d-flex">
-            <a class="btn btn-outline-success" type="button" href="{{url('/reclamation/all')}}">Historique</a>
-          </form>
-        </div>
+
+        <h1>Historique Des Reclamation</h1>
+        
         @if(session()->has('status'))
         <div class="alert alert-success alert-dismissible fade show" role="alert">
         <strong>{{session()->get('status')}}.</strong>

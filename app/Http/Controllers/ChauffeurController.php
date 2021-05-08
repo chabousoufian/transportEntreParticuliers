@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Chauffeur;
 use Illuminate\Http\Request;
-
+use DB;
 class ChauffeurController extends Controller
 {
     /**
@@ -47,8 +47,22 @@ class ChauffeurController extends Controller
      */
     public function show(Request $request, $id)
     {
+
         $chauffeur = Chauffeur::findOrFail($id);
-        return view('chauffeur/voirChauffeur', ['chauffeur' => $chauffeur]);
+        $vehicule = DB::table('vehicules')
+        ->select('*')
+        ->where('idChauffeur','=',$id)
+        ->get();
+
+        $voyage = DB::table('commandes')
+        ->select('*')
+        ->where('idChauffeur','=',$id)
+        ->get();
+
+        //print_r($vehicule);
+        //print_r($voyage);
+
+       return view('chauffeur/voirChauffeur', ['chauffeur' => $chauffeur, 'vehicules' => $vehicule, 'voyages' => $voyage]);
     }
 
     /**

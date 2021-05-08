@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Commande;
 use Illuminate\Http\Request;
 
+use DB;
+
 class CommandeController extends Controller
 {
     /**
@@ -14,7 +16,14 @@ class CommandeController extends Controller
      */
     public function index()
     {
-        return view('voyage/voyage');
+        $voyage = DB::table('commandes')
+        ->join('clients','clients.id','=','commandes.idClient')
+        ->join('chauffeurs','chauffeurs.id','=','commandes.idChauffeur')
+        ->select('commandes.id','commandes.depart','commandes.arivee','clients.Nom as nomclient','clients.Prenom as prenomclient','chauffeurs.Nom as nomchauffeur','chauffeurs.Prenom as prenomchauffeur')
+        ->get();
+      //  Commande::paginate(5);
+   
+        return view('voyage/voyage', ['voyages' => $voyage]);
     }
 
     /**
@@ -44,9 +53,15 @@ class CommandeController extends Controller
      * @param  \App\Models\Commande  $commande
      * @return \Illuminate\Http\Response
      */
-    public function show(Commande $commande)
+    public function show(Request $request, $id)
     {
-        //
+        $voyage = DB::table('commandes')
+        ->join('clients','clients.id','=','commandes.idClient')
+        ->join('chauffeurs','chauffeurs.id','=','commandes.idChauffeur')
+        ->select('commandes.id as id','commandes.depart as depart','commandes.arivee as arivee','commandes.type_vehicule as type','clients.Nom as nomclient','clients.Prenom as prenomclient','clients.id as idClient','clients.tel as telclient','clients.mail as mailclient','chauffeurs.id as idChauffeur','chauffeurs.bio as bio','chauffeurs.Nom as nomchauffeur','chauffeurs.Prenom as prenomchauffeur','chauffeurs.tel as telchauffeur','chauffeurs.mail as mailchauffeur')
+        ->where('commandes.id','=',$id)->get();
+       // print_r($voyage);
+        return view('voyage/voirVoyage',['voyage'=> $voyage]);
     }
 
     /**

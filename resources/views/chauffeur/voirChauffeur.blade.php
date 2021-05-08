@@ -10,7 +10,7 @@
                 <div class="card">
                     <div class="card-header card-header-primary">
                         <h4 class="card-title">Voir Profile</h4>
-                        <p class="card-category">Complete your profile</p>
+                        <p class="card-category">information profile chauffeur</p>
                     </div>
                     <div class="card-body">
                         <table class="table table-shopping">
@@ -18,35 +18,30 @@
                                 <tr>
                                     <th class="text-center"></th>
                                     <th>Vehicule</th>
-                                    <th class="th-description">Color</th>
-                                    <th class="th-description">matricule</th>
-                                    <th class="text-right">Type Vehicule</th>
-
-                                    <th></th>
+                                    <th >matricule</th>
+                                    <th >Type Vehicule</th>
                                 </tr>
                             </thead>
                             <tbody>
+                                @foreach ($vehicules as $vehicule)
                                 <tr>
                                     <td>
                                         <div class="img-container">
                                             <img src="https://www.mercedes-benz.fr/passengercars/mercedes-benz-cars/models/s-class/saloon-wv223/explore/safety-teaser/_jcr_content/par/productinfotextimage/media2/slides/videoimageslide/image.MQ6.7.20200909153030.jpeg" alt="...">
                                         </div>
                                     </td>
-                                    <td class="td-name">
-                                        <a href="#jacket">CLASS S</a>
-                                        <br><small>mercedes-benz</small>
+                                    <td >
+                                        <a href="#jacket">{{$vehicule->modele_vehicule}}</a>
                                     </td>
                                     <td>
-                                        black
+                                        {{$vehicule->matricule}}
                                     </td>
-                                    <td>
-                                        2131351/A/44
-                                    </td>
-                                    <td class="td-number">
-                                        transport particulier
+                                    <td >
+                                        {{$vehicule->type_vehicule}}
                                     </td>
 
                                 </tr>
+                                @endforeach
                             </tbody>
                         </table>
                     </div>
@@ -61,26 +56,23 @@
                         <table class="table table-shopping">
                             <thead>
                                 <tr>
-
                                     <th>Date</th>
                                     <th class="th-description">lieu de départ</th>
                                     <th class="th-description">lieu d'arrivée</th>
                                     <th>Client</th>
                                     <th>vehicule</th>
-
-
-                                    <th></th>
                                 </tr>
                             </thead>
                             <tbody>
+                                @foreach ($voyages as $voyage)
                                 <tr>
-
-                                    <td>2020-02-30 14:23 </td>
-                                    <td> av massira tetouan</td>
-                                    <td> meramar martil </td>
-                                    <td> mohamed </td>
-                                    <td>clio 4</td>
+                                    <td><span class="text-danger">A regler</span> </td>
+                                    <td> {{$voyage->depart}}</td>
+                                    <td> {{$voyage->arivee}} </td>
+                                    <td> {{$voyage->idClient}} </td>
+                                    <td>{{$voyage->type_vehicule}}</td>
                                 </tr>
+                                @endforeach
                             </tbody>
                         </table>
                     </div>
@@ -100,7 +92,7 @@
                             <p class="card-description">
                                 {{$chauffeur->bio}}
                             </p>
-                            <a href="javascript:;" class="btn btn-primary btn-round">Go to profile</a>
+                            <a href="{{url('/chauffeur/'.$chauffeur->id)}}" class="btn btn-primary btn-round">Go to profile</a>
                         </div>
                     </div>
                 </div>
@@ -111,8 +103,8 @@
                         </div>
                         <div class="card-body">
                             <h4 class="card-title">Espace Reclamation </h4>
-                            <p class="card-text">Tout les reclamtion fait par SOUFIAN CHABOU</p>
-                            <a href="#" class="btn btn-primary">voir reclamation</a>
+                            <p class="card-text">Tout les reclamtion fait par {{$chauffeur->Nom}} {{$chauffeur->Prenom}}</p>
+                            <a href="{{url('/reclamation/chauffeur/'.$chauffeur->id)}}" class="btn btn-primary">voir reclamation</a>
                         </div>
                         <div class="card-footer text-muted">
                             2 days ago

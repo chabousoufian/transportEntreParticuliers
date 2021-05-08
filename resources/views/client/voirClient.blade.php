@@ -91,9 +91,7 @@
                         <div class="card-body">
                             <h6 class="card-category text-gray">CLient</h6>
                             <h4 class="card-title text-bold">{{$client->Nom}} {{$client->Prenom}}</h4>
-                            <p class="card-description">
-                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Autem, eaque! Velit corporis modi ex, similique ratione rem suscipit itaque et deleniti nemo voluptatibus consectetur iusto aliquid perferendis mollitia, sequi laborum.
-                            </p>
+                          
                             <a href="javascript:;" class="btn btn-primary btn-round">Go to profile</a>
                         </div>
                     </div>
@@ -105,8 +103,8 @@
                         </div>
                         <div class="card-body">
                             <h4 class="card-title">Espace Reclamation </h4>
-                            <p class="card-text">Tout les reclamtion fait par SOUFIAN CHABOU</p>
-                            <a href="#" class="btn btn-primary">voir reclamation</a>
+                            <p class="card-text">Tout les reclamtion fait par {{$client->Nom}} {{$client->Prenom}}</p>
+                            <a href="{{url('/reclamation/client/'.$client->id)}}" class="btn btn-primary">voir reclamation</a>
                         </div>
                         <div class="card-footer text-muted">
                             2 days ago
